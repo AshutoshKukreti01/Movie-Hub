@@ -1,11 +1,10 @@
-/* ═══════════════════════════════════════════════════════════
-   CineVerse — Premium Movie Booking System
-   Author: CineVerse UI Team
-   Stack:  Pure HTML · CSS · JavaScript (no frameworks)
-   ═══════════════════════════════════════════════════════════ */
-
+/* ==========================================================
+   MovieHub - Movie Booking System
+   Developed By: Ashutosh Kukreti
+   Tech Stack: HTML, CSS, JavaScript
+   ========================================================== */
 /* ─────────────────────────────────────────────
-   CSS CUSTOM PROPERTIES (Design Tokens)
+   CSS CUSTOM PROPERTIES
 ───────────────────────────────────────────── */
 :root {
   /* Colors */
@@ -287,7 +286,8 @@ input, button { outline: none; }
   min-height: 100vh;
   display: flex;
   align-items: flex-end;
-  overflow: hidden;
+  /* removed overflow:hidden — it was clipping the display font at edges */
+  overflow-x: clip;
 }
 
 .hero-bg {
@@ -327,7 +327,8 @@ input, button { outline: none; }
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 640px;
+  max-width: 700px;        /* was 640px — wider so long titles like INTERSTELLAR don't clip */
+  width: 100%;             /* ensures it never exceeds viewport */
   padding: 0 clamp(1rem, 5vw, 4rem) 8rem;
   animation: heroFadeIn 1s var(--ease) both;
 }
@@ -364,15 +365,18 @@ input, button { outline: none; }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 9vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: 0.03em;
+  font-size: clamp(3rem, 8vw, 6.5rem); /* slightly pulled back so long titles fit cleanly */
+  line-height: 1.05;        /* was 0.9 — that was cutting off top/bottom of tall glyphs */
+  letter-spacing: 0.02em;   /* was 0.03em — small reduction prevents last char clipping */
   margin-bottom: 1rem;
+  padding-right: 0.1em;     /* tiny right padding catches any trailing letter-spacing bleed */
   background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.75) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
+  overflow: visible;         /* make sure the element itself never clips its own text */
+  word-break: keep-all;      /* prevent mid-word breaks on narrow screens */
 }
 
 .hero-meta {
@@ -1326,7 +1330,11 @@ input, button { outline: none; }
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+  .hero-title {
+    font-size: clamp(2.2rem, 11vw, 3.5rem); /* safe range — avoids clipping on narrow phones */
+    line-height: 1.05;
+    padding-right: 0.15em;
+  }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn-primary,
   .hero-actions .btn-ghost { width: 100%; justify-content: center; }

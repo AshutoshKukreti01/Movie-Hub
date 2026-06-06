@@ -1,22 +1,15 @@
 /*
   MovieHub - Movie Ticket Booking System
   Built by: Ashutosh Kukreti
-  B.Tech CSE, DIT University, Dehradun
 
-  This is my front-end internship project. It's a fully functional
-  movie ticket booking UI built with vanilla HTML, CSS, and JS.
-  No frameworks used — just pure web tech.
+  Frontend project built using HTML, CSS and JavaScript.
 
   Features:
-  - Movie browsing with search and genre filters
-  - Interactive seat selection (standard + premium)
-  - Booking summary with price calculation
-  - Form validation before confirming
-  - LocalStorage to remember past bookings
-  - Toast notifications and confetti on success
+  - Movie search and filtering
+  - Seat booking
+  - Booking summary
+  - LocalStorage support
 */
-
-
 // ─── MOVIE DATA ──────────────────────────────────────────────────────────────
 // I'm storing movie details as an array of objects.
 // Each movie has id, title, genre, rating, duration, year, price, poster, backdrop, desc, and badge info.
